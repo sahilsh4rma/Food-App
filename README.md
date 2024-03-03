@@ -27,7 +27,7 @@ The project follows a Django app structure with the following main components:
 1. **Clone the repository:**
 
    \`\`\`bash
-   git clone https://github.com/yourusername/your-foodapp-repo.git && cd your-foodapp-repo && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt && pip install Pillow && python manage.py migrate
+   git clone https://github.com/sahilsh4rma/Food-App.git && cd Food-App && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt && pip install Pillow && python manage.py migrate
    \`\`\`
 
 2. **Create a superuser:**
