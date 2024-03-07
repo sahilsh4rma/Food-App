@@ -1,12 +1,31 @@
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">
-        {{message}}
-    </div>
-    {% endfor %}
-{% endif %}
-<form method="POST">
-    {%csrf_token %}
-    {{form}}
-    <button>login</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="{% static 'users/login_style.css' %}">
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+          {{message}}
+      </div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+</body>
+</html>

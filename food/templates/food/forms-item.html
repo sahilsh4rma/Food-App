@@ -1,8 +1,18 @@
-{% extends 'food/base.html/' %}
+{% extends 'food/base.html' %}
+
 {% block body %}
-<form method="POST">
+<div class="container mt-5">
+  <form method="POST">
     {% csrf_token %}
-    {{form}}
-    <button type="submit">save</button>
-</form>
+    
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
 {% endblock %}

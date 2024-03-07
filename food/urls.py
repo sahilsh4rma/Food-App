@@ -5,18 +5,16 @@ app_name = 'food'
 
 urlpatterns = [
    # index = '/food'
+    # path('',views.IndexClassView.as_view(),name="index"),
+
     path('',views.index,name="index"),
 
-    # hello
-    # path('item/',views.item,name="hello")
-
-
     #detail = '/food/<item_id>
-    path('<int:item_id>/',views.detail,name="detail"),
+    path('<int:pk>/',views.DetailClassView.as_view(),name="detail"),
 
 
     # add form
-    path('add/',views.create_item,name="create_item"),
+    path('add/',views.CreateItem.as_view(),name="create_item"),
 
     # updatin item
     path('update/<int:id>/',views.update_item,name="update_item"),
