@@ -7,6 +7,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 # Create your views here.
 
 
@@ -24,14 +27,13 @@ def index(request):
 
 # detail view
 
-
 class DetailClassView(DetailView):
     model = Item
     template_name = 'food/detail.html'
 
 
 #creating a new item
-
+@method_decorator(login_required, name='dispatch')
 class CreateItem(CreateView):
     model = Item
     fields = ["item_name", "item_desc", "item_price", "item_image"]
@@ -43,7 +45,7 @@ class CreateItem(CreateView):
 
 
 #updatin Item
-
+@login_required
 def update_item(request,id):
     item = Item.objects.get(pk=id)
     form = Itemform(request.POST or None, instance=item)
@@ -53,8 +55,7 @@ def update_item(request,id):
     return render(request,'food/forms-item.html',{"form":form, "item":item})
 
 # deleting an item
-
-
+@login_required
 def delete_item(request,id):
     item = Item.objects.get(pk=id)
     if request.method == 'POST':
